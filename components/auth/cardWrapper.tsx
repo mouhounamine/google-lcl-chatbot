@@ -6,8 +6,8 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import BackButton from "../back-button";
-import { Header } from "../header";
+import BackButton from "@/components/auth/back-button";
+import { Header } from "@/components/auth/header";
 
 interface CardWrapperProps {
   children: React.ReactNode;

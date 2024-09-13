@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import React from "react";
-import { CardWrapper } from "./cardWrapper";
+import { CardWrapper } from "@/components/auth/cardWrapper";
 import {
   Form,
   FormControl,
@@ -18,9 +18,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { FormSuccess } from "./form-success";
-import { FormError } from "../from-error";
-import { login } from "@/app/actions/login";
+import { FormSuccess } from "@/components/auth/form-success";
+import { FormError } from "@/components/auth/form-error";
+import { login } from "@/actions/login";
 import { LoginSchema } from "@/schemas";
 
 export const LoginForm = () => {
@@ -49,8 +49,8 @@ export const LoginForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Welcome Back"
-      backButtonLabel="Don't have an account?"
+      headerLabel="Connectez-vous à votre compte"
+      backButtonLabel="Je n'ai pas de compte client chez LCL"
       backButtonHref="/auth/register"
       showSocialLogin
     >
@@ -81,7 +81,7 @@ export const LoginForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>Mot de passe</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
@@ -100,7 +100,7 @@ export const LoginForm = () => {
           <FormSuccess message={success} />
           <Button
             disabled={isSubmitting}
-            className="bg-sky-400 hover:bg-sky-300 w-full text-white rounded-full"
+            className="bg-[#232D7E] hover:bg-[#232e7ebb] w-full text-white rounded-full"
             type="submit"
           >
             Sign in

@@ -1,0 +1,176 @@
+[debug] [2024-09-13T17:25:14.230Z] ----------------------------------------------------------------------
+[debug] [2024-09-13T17:25:14.234Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2024-09-13T17:25:14.234Z] CLI Version:   13.17.0
+[debug] [2024-09-13T17:25:14.234Z] Platform:      darwin
+[debug] [2024-09-13T17:25:14.234Z] Node Version:  v20.11.1
+[debug] [2024-09-13T17:25:14.235Z] Time:          Fri Sep 13 2024 19:25:14 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2024-09-13T17:25:14.235Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-13T17:25:14.307Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-13T17:25:14.307Z] > authorizing via signed-in user (equipe10_joueur8@r7sdwent1-cagip.fr)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/Rayane_Pro/equipe10
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-09-13T17:25:20.647Z] Using project from CLI flag: lcl-hackathon-e10-sbox-d6db
+[debug] [2024-09-13T17:25:20.649Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lcl-hackathon-e10-sbox-d6db [none]
+[debug] [2024-09-13T17:25:24.062Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lcl-hackathon-e10-sbox-d6db 403
+[debug] [2024-09-13T17:25:24.062Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lcl-hackathon-e10-sbox-d6db {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-09-13T17:25:24.063Z] HTTP Error: 403, The caller does not have permission
+[debug] [2024-09-13T17:25:24.064Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at responseToError (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/apiv2.js:305:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project lcl-hackathon-e10-sbox-d6db. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-09-13T17:28:32.890Z] ----------------------------------------------------------------------
+[debug] [2024-09-13T17:28:32.893Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2024-09-13T17:28:32.894Z] CLI Version:   13.17.0
+[debug] [2024-09-13T17:28:32.894Z] Platform:      darwin
+[debug] [2024-09-13T17:28:32.894Z] Node Version:  v20.11.1
+[debug] [2024-09-13T17:28:32.894Z] Time:          Fri Sep 13 2024 19:28:32 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2024-09-13T17:28:32.895Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-13T17:28:32.963Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-13T17:28:32.963Z] > authorizing via signed-in user (equipe10_joueur8@r7sdwent1-cagip.fr)
+[debug] [2024-09-13T17:28:32.963Z] [iam] checking project lcl-hackathon-e10-sbox-d6db for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-09-13T17:28:32.965Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions [none]
+[debug] [2024-09-13T17:28:32.966Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions x-goog-quota-user=projects/lcl-hackathon-e10-sbox-d6db
+[debug] [2024-09-13T17:28:32.966Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-09-13T17:28:36.879Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions 200
+[debug] [2024-09-13T17:28:36.879Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions {}
+[debug] [2024-09-13T17:28:36.879Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project lcl-hackathon-e10-sbox-d6db:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-09-13T17:28:36.880Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lcl-hackathon-e10-sbox-d6db [none]
+[debug] [2024-09-13T17:28:40.172Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lcl-hackathon-e10-sbox-d6db 403
+[debug] [2024-09-13T17:28:40.172Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lcl-hackathon-e10-sbox-d6db {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-09-13T17:28:40.173Z] HTTP Error: 403, The caller does not have permission
+[debug] [2024-09-13T17:28:40.175Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at responseToError (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/apiv2.js:305:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project lcl-hackathon-e10-sbox-d6db. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-09-13T17:31:51.848Z] ----------------------------------------------------------------------
+[debug] [2024-09-13T17:31:51.852Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2024-09-13T17:31:51.852Z] CLI Version:   13.17.0
+[debug] [2024-09-13T17:31:51.852Z] Platform:      darwin
+[debug] [2024-09-13T17:31:51.852Z] Node Version:  v20.11.1
+[debug] [2024-09-13T17:31:51.853Z] Time:          Fri Sep 13 2024 19:31:51 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2024-09-13T17:31:51.853Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-13T17:31:51.929Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-13T17:31:51.930Z] > authorizing via signed-in user (equipe10_joueur8@r7sdwent1-cagip.fr)
+[debug] [2024-09-13T17:31:51.930Z] [iam] checking project lcl-hackathon-e10-sbox-d6db for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-09-13T17:31:51.932Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions [none]
+[debug] [2024-09-13T17:31:51.933Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions x-goog-quota-user=projects/lcl-hackathon-e10-sbox-d6db
+[debug] [2024-09-13T17:31:51.933Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-09-13T17:31:55.839Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions 200
+[debug] [2024-09-13T17:31:55.839Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lcl-hackathon-e10-sbox-d6db:testIamPermissions {}
+[debug] [2024-09-13T17:31:55.840Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project lcl-hackathon-e10-sbox-d6db:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-09-13T17:31:55.841Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lcl-hackathon-e10-sbox-d6db [none]
+[debug] [2024-09-13T17:31:59.172Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lcl-hackathon-e10-sbox-d6db 403
+[debug] [2024-09-13T17:31:59.172Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lcl-hackathon-e10-sbox-d6db {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-09-13T17:31:59.173Z] HTTP Error: 403, The caller does not have permission
+[debug] [2024-09-13T17:31:59.174Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at responseToError (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/apiv2.js:305:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project lcl-hackathon-e10-sbox-d6db. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-09-13T17:33:19.749Z] ----------------------------------------------------------------------
+[debug] [2024-09-13T17:33:19.752Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2024-09-13T17:33:19.753Z] CLI Version:   13.17.0
+[debug] [2024-09-13T17:33:19.753Z] Platform:      darwin
+[debug] [2024-09-13T17:33:19.753Z] Node Version:  v20.11.1
+[debug] [2024-09-13T17:33:19.753Z] Time:          Fri Sep 13 2024 19:33:19 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2024-09-13T17:33:19.754Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-13T17:33:19.824Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-13T17:33:19.824Z] > authorizing via signed-in user (equipe10_joueur8@r7sdwent1-cagip.fr)
+[debug] [2024-09-13T17:33:19.824Z] [iam] checking project chatbot-ai-lcl for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-09-13T17:33:19.826Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/chatbot-ai-lcl:testIamPermissions [none]
+[debug] [2024-09-13T17:33:19.826Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/chatbot-ai-lcl:testIamPermissions x-goog-quota-user=projects/chatbot-ai-lcl
+[debug] [2024-09-13T17:33:19.827Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/chatbot-ai-lcl:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-09-13T17:33:23.667Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/chatbot-ai-lcl:testIamPermissions 200
+[debug] [2024-09-13T17:33:23.667Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/chatbot-ai-lcl:testIamPermissions {}
+[debug] [2024-09-13T17:33:23.668Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project chatbot-ai-lcl:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-09-13T17:33:23.668Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/chatbot-ai-lcl [none]
+[debug] [2024-09-13T17:33:26.968Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/chatbot-ai-lcl 403
+[debug] [2024-09-13T17:33:26.968Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/chatbot-ai-lcl {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-09-13T17:33:26.970Z] HTTP Error: 403, The caller does not have permission
+[debug] [2024-09-13T17:33:26.971Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at responseToError (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/apiv2.js:305:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project chatbot-ai-lcl. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-09-13T17:36:07.515Z] ----------------------------------------------------------------------
+[debug] [2024-09-13T17:36:07.518Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2024-09-13T17:36:07.519Z] CLI Version:   13.17.0
+[debug] [2024-09-13T17:36:07.519Z] Platform:      darwin
+[debug] [2024-09-13T17:36:07.519Z] Node Version:  v20.11.1
+[debug] [2024-09-13T17:36:07.519Z] Time:          Fri Sep 13 2024 19:36:07 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2024-09-13T17:36:07.519Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-13T17:36:07.590Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-13T17:36:07.590Z] > authorizing via signed-in user (equipe10_joueur8@r7sdwent1-cagip.fr)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/Rayane_Pro/equipe10
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-09-13T17:36:11.691Z] Using project from CLI flag: chatbot-ai-lcl
+[debug] [2024-09-13T17:36:11.693Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/chatbot-ai-lcl [none]
+[debug] [2024-09-13T17:36:15.075Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/chatbot-ai-lcl 403
+[debug] [2024-09-13T17:36:15.075Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/chatbot-ai-lcl {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-09-13T17:36:15.076Z] HTTP Error: 403, The caller does not have permission
+[debug] [2024-09-13T17:36:15.077Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at responseToError (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/Users/Rayane_Pro/.config/yarn/global/node_modules/firebase-tools/lib/apiv2.js:305:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project chatbot-ai-lcl. Please make sure the project exists and your account has permission to access it.
