@@ -1,0 +1,40 @@
+{
+    "chatSession": {
+      "currentChat": {
+        "fileName": "chat_topic_20240914_112345.json", 
+        "userPrompt": "User's input goes here",
+        "AIResponse": "AI's response goes here",
+        "status": "active"
+      },
+      "lastChat": {
+        "fileName": "chat_topic_20240914_103012.json", 
+        "userPrompt": "Previous chat content",
+        "AIResponse": "Previous AI response",
+        "status": "saved"
+      }
+    },
+    "buttons": {
+      "newChat": {
+        "label": "New Chat",
+        "action": {
+          "description": "Create a new chat session and save or end the current one.",
+          "steps": [
+            "Save current chat with filename format `chat_topic_YYYYMMDD_HHMMSS.json`",
+            "Mark current chat as 'saved'",
+            "Start a new chat session with a fresh file"
+          ]
+        }
+      },
+      "saveChat": {
+        "label": "Save Chat",
+        "action": {
+          "description": "Save the current chat before creating a new one.",
+          "steps": [
+            "Save current chat with filename format `chat_topic_YYYYMMDD_HHMMSS.json`",
+            "Mark current chat as 'saved'"
+          ]
+        }
+      }
+    }
+  }
+  

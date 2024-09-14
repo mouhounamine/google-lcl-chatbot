@@ -1,5 +1,5 @@
+import { TransitionLink } from "@/components/auth/LinkTransition";
 import { Button } from "@/components/ui/button";
-import { TransitionLink } from "./LinkTransition";
 
 import {
   Sheet,
