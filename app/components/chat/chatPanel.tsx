@@ -34,7 +34,7 @@ const ChatPanel = ({ prompts }: Props) => {
   const sendPrompt = async (prompt: string) => {
     try {
       const accessToken =
-        "ya29.a0AcM612wXDBhxzRCKa9WgW8g8c3q_IY52HKVIGH4N2nLYGImrQlW9YU-baT6wW8zTRAXhE_NSeYybIS8ABh7NqJlfF0nM_4KJSmvZGVx15fbjCh89w-lu_JWwVVooOem9jd0aW7Xgb7-2XnueRD_zSylxHPrKfm-x8gIaCgYKASUSARISFQHGX2MiRVQjhYm2X0YOyCklBQbLMQ0170"; // Replace with your token
+        "ya29.a0AcM612ygp2GEro2eshCWfem4huAoDcCknnenoCFAe8E931FUuS3fHa6ENeFh0s-G98Jxo4mS25a4aizvL1Nd1gYhoP029Td_5a3oieieP_vS0vkfG8c7a1DDGBbdc9eWcAEiASi6LnG1IDzn5TWod89On_XfRAYgODsaCgYKAfsSARISFQHGX2MiV8YH9O6nW5ogM3buMgeEVw0170"; // Replace with your token
       const sessionId = "session111"; // Session ID (can be dynamically generated)
       const url = `https://europe-west1-dialogflow.googleapis.com/v3/projects/lcl-hackathon-e10-sbox-d6db/locations/europe-west1/agents/351b0001-a31c-4f2d-9116-697dfabf2267/environments/e42b062a-a8bf-49ff-9542-9196caff0bb3/sessions/${sessionId}:detectIntent`;
 

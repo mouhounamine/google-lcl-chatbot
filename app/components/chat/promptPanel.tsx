@@ -19,6 +19,7 @@ const PromptPanel: React.FC<Props> = ({ prompts }) => {
 
     if (inputValue.trim()) {
       prompts.push(inputValue); // Met à jour l'état parent avec le nouveau tableau de prompts
+      console.log("PROMPTS ---> [prompts]", inputValue);
     }
   };
 

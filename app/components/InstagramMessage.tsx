@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { TextGenerateEffect } from "./text-effect-generate";
 
 interface InstagramMessageProps {
   avatarUrl: string;
@@ -14,7 +16,12 @@ const InstagramMessage = ({
   timestamp,
 }: InstagramMessageProps) => {
   return (
-    <div className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-md max-w-md">
+    <motion.div
+      className="flex items-start space-x-4 p-4 bg-slate-100 rounded-xl shadow-md max-w-md"
+      initial={{ opacity: 0, z: 20 }} // Point de départ (invisible et en dessous)
+      animate={{ opacity: 1, z: 0 }} // Animation vers l'état final (visible)
+      transition={{ duration: 0.5 }} // Durée de l'animation
+    >
       {/* Avatar Section */}
       <div className="flex-shrink-0">
         <img
@@ -35,7 +42,7 @@ const InstagramMessage = ({
         {/* Message Text */}
         <div className="text-gray-700 text-sm">{message}</div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
