@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "lcl-hackathon-e10-sbox-d6db"
-  }
+    "default": "lcl-hackathon-e10-sbox-d6db",
+    "database": "lcl-hackathon-e10-sbox-d6db"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

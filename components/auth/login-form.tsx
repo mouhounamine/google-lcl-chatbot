@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase.config";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
@@ -23,12 +25,21 @@ import { FormError } from "@/components/auth/form-error";
 import { login } from "@/actions/login";
 import { LoginSchema } from "@/schemas";
 
-export const LoginForm = () => {
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+// Définir le type pour les valeurs du formulaire
+type LoginFormValues = z.infer<typeof LoginSchema>;
+
+// Définir le type pour la réponse de la fonction login
+interface LoginResponse {
+  error?: string;
+  success?: string;
+}
+
+export const LoginForm: React.FC = () => {
+  const [error, setError] = useState<string | undefined>(undefined);
+  const [success, setSuccess] = useState<string | undefined>(undefined);
   const [isSubmitting, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof LoginSchema>>({
+  const form = useForm<LoginFormValues>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
@@ -36,14 +47,13 @@ export const LoginForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
-    setError("");
-    setSuccess("");
-    startTransition(() => {
-      login(values).then((data) => {
-        setError(data?.error);
-        setSuccess(data?.success);
-      });
+  const onSubmit: SubmitHandler<LoginFormValues> = async (values) => {
+    setError(undefined);
+    setSuccess(undefined);
+    startTransition(async () => {
+      const data: LoginResponse = await login(values);
+      setError(data.error);
+      setSuccess(data.success);
     });
   };
 
