@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import React, { useEffect, useState } from "react";
 import InstagramMessage from "../InstagramMessage";
 import axios from "axios";
@@ -11,7 +10,7 @@ const PanelChat = ({ prompts }: { prompts: string[] }) => {
   const sendPrompt = async (prompt: string) => {
     try {
       const accessToken =
-        "ya29.a0AcM612xB4L-E195DQGEH7n5qtAeF_xv0CVaDWydXcpHe_be4dk1k172dRSXFbqOgPvIIwBm2ModGnfyB5XOa2xvfe3Q695MgFBJvzh0xghei38BeLmqEg8nOfmM10V_mNWUVw6fl1qNgj0lSxr3OriH4nvpuFeeeeCEaCgYKAV4SARISFQHGX2MiStzYyeeYXOGurXNCjMtczA0170"; // Remplace par ton token
+        "ya29.a0AcM612zfzDvh93v1UVDbWpFCcTOEnGpFKVm-tIhmG-6pfSf7J2azWEYDfScfc2nz7OZXRFDCYXjYo-SueWW751j4fngcLjykEdVU0LojmHLHNz5Swqh0DkOF66anuTBFDQ2yxJlAmY-ic0_2q3IqM3Ug95EteEiCudsaCgYKAY4SARISFQHGX2Miu1fRWI8EMCSPuwvqGECoAQ0170"; // Remplace par ton token
       const sessionId = "session111"; // ID de session (peut être généré dynamiquement)
       const url = `https://europe-west1-dialogflow.googleapis.com/v3/projects/lcl-hackathon-e10-sbox-d6db/locations/europe-west1/agents/351b0001-a31c-4f2d-9116-697dfabf2267/environments/e42b062a-a8bf-49ff-9542-9196caff0bb3/sessions/${sessionId}:detectIntent`;
 
@@ -88,7 +87,7 @@ const PanelChat = ({ prompts }: { prompts: string[] }) => {
           {/* Message de l'utilisateur */}
           <div
             className={`w-full flex justify-end ${
-              prompt === "Hello" ? "hidden" : ""
+              prompt === "Hey" ? "hidden" : ""
             }`}
           >
             <InstagramMessage
@@ -136,9 +135,7 @@ const PanelChat = ({ prompts }: { prompts: string[] }) => {
   );
 };
 
-// PanelPrompt component
 const PanelPrompt = ({
-  currentPrompt,
   inputValue,
   setInputValue,
   handleSubmit,
@@ -148,8 +145,13 @@ const PanelPrompt = ({
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   handleSubmit: (e: any) => void;
 }) => {
+  const [base64Image] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
+
+  // Fonction pour envoyer l'image en base64 via une requête POST
+
   return (
-    <section className=" bg-white rounded-xl h-[10%] grid place-content-center">
+    <section className="bg-white rounded-xl h-[10%] grid place-content-center">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -161,6 +163,35 @@ const PanelPrompt = ({
           Submit
         </button>
       </form>
+
+      {/* Input pour uploader un fichier PNG */}
+      <div className="mt-4">
+        {/**
+        * <input
+          type="file"
+          accept="image/png" // Accepter uniquement les fichiers PNG
+          onChange={handleFileChange}
+          className="border-2 border-gray-300 p-2"
+        />
+        */}
+      </div>
+
+      {/* Affiche une erreur si le fichier n'est pas au format PNG */}
+      {error && <div className="mt-2 text-red-500">{error}</div>}
+
+      {/* Affiche l'image base64 (facultatif) */}
+      {base64Image && (
+        <div className="mt-4">
+          <h3 className="text-gray-600">Image en base64 :</h3>
+          <textarea
+            readOnly
+            value={base64Image}
+            className="w-full h-32 border-2 border-gray-300"
+          />
+          {/* Affiche l'image */}
+          <img src={base64Image} alt="PNG preview" className="mt-4" />
+        </div>
+      )}
     </section>
   );
 };
@@ -180,9 +211,6 @@ const PanelHistory = ({ prompts }: { prompts: string[] }) => {
             </div>
           ))}
         </span>
-      </div>
-      <div className="border-2 border-red-600 h-[10%] w-full">
-        <Button className="grid place-content-center">Upgrade</Button>
       </div>
     </section>
   );

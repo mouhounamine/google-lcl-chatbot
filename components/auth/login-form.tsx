@@ -36,7 +36,6 @@ interface LoginResponse {
 }
 
 export const LoginForm: React.FC = () => {
-  
   const [error, setError] = useState<string | undefined>(undefined);
   const [success, setSuccess] = useState<string | undefined>(undefined);
   const [isSubmitting, startTransition] = useTransition();
@@ -59,7 +58,7 @@ export const LoginForm: React.FC = () => {
       setSuccess(data.success);
 
       if (data.success) {
-        const callbackUrl = '/settings';
+        const callbackUrl = "/chat";
         router.push(callbackUrl);
       }
     });
