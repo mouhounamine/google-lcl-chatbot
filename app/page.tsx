@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { LoginButton } from "@/components/auth/login-button"; 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { AuthProvider } from "@/context/auth-context";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -11,6 +12,7 @@ const font = Poppins({
 
 export default function Home() {
   return (
+    <AuthProvider>
     <main className="flex h-full flex-col items-center justify-center bg-[#232D7E]">
       <div className="space-y-6 text-center">
         <Image src="/LCL-logo.png" alt="logo" width={300} height={300} />
@@ -29,5 +31,6 @@ export default function Home() {
         </div>
       </div>
     </main>
+    </AuthProvider>
   );
 }

@@ -5,8 +5,10 @@ import { auth } from "@/firebase.config"; // Make sure the correct Firebase conf
 
 // Function to handle login
 export const login = async (values: z.infer<typeof LoginSchema>) => {
+  
   // Validate the input using Zod schema
   const validationFields = LoginSchema.safeParse(values);
+
 
   if (!validationFields.success) {
     return { error: "Invalid email or password format" };

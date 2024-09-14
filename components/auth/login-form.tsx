@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase.config";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import * as z from "zod";
 
 import { Input } from "@/components/ui/input";
@@ -35,9 +36,11 @@ interface LoginResponse {
 }
 
 export const LoginForm: React.FC = () => {
+  
   const [error, setError] = useState<string | undefined>(undefined);
   const [success, setSuccess] = useState<string | undefined>(undefined);
   const [isSubmitting, startTransition] = useTransition();
+  const router = useRouter();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(LoginSchema),
@@ -54,6 +57,11 @@ export const LoginForm: React.FC = () => {
       const data: LoginResponse = await login(values);
       setError(data.error);
       setSuccess(data.success);
+
+      if (data.success) {
+        const callbackUrl = '/settings';
+        router.push(callbackUrl);
+      }
     });
   };
 
