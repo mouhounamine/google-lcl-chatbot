@@ -1,20 +1,41 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import InstagramMessage from "../InstagramMessage";
 
 interface Props {
-  prompt: string;
+  prompts: string[];
 }
 
-const ChatPanel = ({ prompt }: Props) => {
-  const [response, setResponse] = useState<any>(null); // Remplacement par any pour traiter l'objet de réponse complet
+interface DialogflowResponse {
+  responseId: string;
+  queryResult: {
+    fulfillmentText: string;
+    responseMessages: Array<{
+      text?: {
+        text: string[];
+      };
+    }>;
+  };
+}
+
+interface Message {
+  sender: string; // To distinguish between user and bot messages
+  avatarUrl: string;
+  message: string;
+  timestamp: string;
+}
+
+const ChatPanel = ({ prompts }: Props) => {
+  const [chatHistory, setChatHistory] = useState<Message[]>([]); // Track all messages
   const [error, setError] = useState<string | undefined>("");
 
-  // Fonction pour appeler l'API Google Dialogflow
+  console.log("Prompts --->", prompts);
+  // Function to call Google Dialogflow API
   const sendPrompt = async (prompt: string) => {
     try {
       const accessToken =
-        "ya29.a0AcM612xmSuAPoN4SB9a038JLCplulL5mVgLiWnNhsxV4rV3Y9qVBbnMNgG-Uv1EW_oWVZUOR5WuWyA04umWoc1VAhi-kcV5BUMthd23jRXf3LnaEurJ1ha_5JhBoFS-Aoq1RlVhGZVLmi_0PicvXh2hsltAGQRY0oQaCgYKAWwSARISFQHGX2MiluiMz1fDjFp3ykJfhdRE1w0169"; // Remplace par ton token
-      const sessionId = "session111"; // ID de session (peut être généré dynamiquement)
+        "ya29.a0AcM612wXDBhxzRCKa9WgW8g8c3q_IY52HKVIGH4N2nLYGImrQlW9YU-baT6wW8zTRAXhE_NSeYybIS8ABh7NqJlfF0nM_4KJSmvZGVx15fbjCh89w-lu_JWwVVooOem9jd0aW7Xgb7-2XnueRD_zSylxHPrKfm-x8gIaCgYKASUSARISFQHGX2MiRVQjhYm2X0YOyCklBQbLMQ0170"; // Replace with your token
+      const sessionId = "session111"; // Session ID (can be dynamically generated)
       const url = `https://europe-west1-dialogflow.googleapis.com/v3/projects/lcl-hackathon-e10-sbox-d6db/locations/europe-west1/agents/351b0001-a31c-4f2d-9116-697dfabf2267/environments/e42b062a-a8bf-49ff-9542-9196caff0bb3/sessions/${sessionId}:detectIntent`;
 
       const requestBody = {
@@ -35,77 +56,84 @@ const ChatPanel = ({ prompt }: Props) => {
         },
       });
 
-      console.log("LE RESULTAT ", result.data); // Pour vérifier la structure de la réponse
+      console.log("LE RESULTAT ", result.data); // To verify the response structure
 
-      return { data: result.data };
+      return { data: result.data as DialogflowResponse };
     } catch (err) {
-      return { error: err.message };
+      return { error: (err as Error).message };
     }
   };
 
   useEffect(() => {
     const fetchPromptData = async () => {
-      if (prompt) {
-        const result = await sendPrompt(prompt);
+      if (prompts) {
+        // First, add the user's message to the chat history
+        setChatHistory((prevHistory) => [
+          ...prevHistory,
+          {
+            sender: "User",
+            avatarUrl: "https://randomuser.me/api/portraits/men/32.jpg", // Replace with actual user avatar if available
+            message: prompts[0],
+            timestamp: new Date().toLocaleTimeString(),
+          },
+        ]);
+
+        const result = await sendPrompt(prompts[0]);
         if (result.error) {
           setError(result.error);
-        } else {
-          setResponse(result.data); // Enregistre la réponse entière
+        } else if (result.data) {
+          // Add the bot's response to the chat history
+          const botMessage = getResponseMessages(result.data);
+          setChatHistory((prevHistory) => [
+            ...prevHistory,
+            {
+              sender: "Bot",
+              avatarUrl: "https://randomuser.me/api/portraits/women/44.jpg", // Replace with a bot avatar if needed
+              message: botMessage,
+              timestamp: new Date().toLocaleTimeString(),
+            },
+          ]);
         }
       }
     };
 
     fetchPromptData();
-  }, [prompt]);
+  }, [prompts]);
 
-  // Fonction pour extraire les messages de responseMessages
-  const getResponseMessages = () => {
-    if (
-      response &&
-      response.queryResult &&
-      response.queryResult.responseMessages
-    ) {
-      const messages = response.queryResult.responseMessages.map(
-        (message: any, index: number) => {
+  // Function to extract the messages from the response
+  const getResponseMessages = (data: DialogflowResponse): string => {
+    if (data && data.queryResult && data.queryResult.responseMessages) {
+      const messages = data.queryResult.responseMessages
+        .map((message) => {
           if (message.text && message.text.text) {
-            return <p key={index}>{message.text.text[0]}</p>; // Assure-toi que text est un tableau
+            return message.text.text[0]; // Extract the first string from the text array
           }
           return null;
-        }
-      );
-      return messages;
+        })
+        .filter(Boolean); // Filter out null values
+
+      return messages.join(" "); // Concatenate all messages into a single string
     }
-    return null;
+    return ""; // Return an empty string if no response
   };
 
   return (
-    <section className="border-2 border-red-700 h-[90%] p-10 flex flex-col gap-2">
-      <div className="border-2 border-green-500 h-[50%] w-full flex flex-row items-center gap-5">
-        <div className="border-2 border-black w-[30%] h-[80%]"></div>
-        <div className="border-2 border-red-600 w-[30%] h-[80%]"></div>
-        <div className="border-2 border-red-600 w-[30%] h-[80%]"></div>
-        <div className="border-2 border-red-600 w-[30%] h-[80%]"></div>
-      </div>
-      {prompt === "a" && (
-        <div className="border-2 border-red-500 h-[50%] w-full grid place-content-center text-center">
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry standard dummy text ever
-            since the 1500s...
-          </p>
-        </div>
-      )}
+    <section className="border-2 border-red-700 h-[90%] p-10 flex flex-col gap-2 overflow-y-auto">
+      {/* Map over chatHistory and display messages */}
+      {chatHistory.map((msg, index) => (
+        <InstagramMessage
+          key={index}
+          avatarUrl={msg.avatarUrl}
+          senderName={msg.sender}
+          message={msg.message}
+          timestamp={msg.timestamp}
+        />
+      ))}
 
-      {response && (
-        <div className="mt-4 p-4 border border-blue-500">
-          <h1>{JSON.stringify(response)}</h1>
-          <p>Response ID: {response.responseId}</p>
-          <p>Query Result: {response.queryResult.fulfillmentText}</p>
-          <div>{getResponseMessages()}</div> {/* Affichage des messages */}
-        </div>
-      )}
       {error && (
-        <div className="mt-4 p-4 border border-red-500">Error: {error}</div>
+        <div className="mt-4 p-4 border border-red-500">
+          Error: {JSON.stringify(error)}
+        </div>
       )}
     </section>
   );

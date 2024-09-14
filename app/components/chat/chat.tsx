@@ -1,21 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HistoryPanel from "./historyPanel";
-import ChatPanel from "./chatPanel";
 import PromptPanel from "./promptPanel";
+import ChatPanel from "./chatPanel";
 
 const Chat = () => {
-  const [prompt, setPrompt] = useState("Initial prompt");
+  const [prompt] = useState("Hello");
+  const [prompts] = useState([prompt]);
+
+  useEffect(() => {
+    console.log("Hello coté CHAT ", prompt);
+    prompts.push(prompt);
+  }, [prompt]);
 
   return (
-    <section className="border-2 h-screen border-green-600 flex flex-row w-full p-5">
-      <div className="border-2 border-red-500 w-[20%]">
+    <section className="gap-5 h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#406be9] to-[#6363f7] flex flex-row w-full p-5">
+      <div className=" w-[20%]">
         <HistoryPanel />
       </div>
-      <div className="border-2 border-yellow-500 w-[80%]">
-        <ChatPanel prompt={prompt} />
-        <PromptPanel setPrompt={setPrompt} prompt={prompt} />
+      <div className=" w-[80%]">
+        <ChatPanel prompts={prompts} />
+        <PromptPanel prompts={prompts} />
       </div>
     </section>
   );

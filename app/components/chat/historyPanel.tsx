@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 
 const HistoryPanel = () => {
@@ -10,19 +11,26 @@ const HistoryPanel = () => {
   ]);
 
   return (
-    <div className="h-full bg-green-400 hidden sm:block md:block p-4">
-      <h2 className="text-lg font-bold mb-4">Historique des discussions</h2>
-      <div className="space-y-4">
-        {conversations.map((conversation) => (
-          <div
-            key={conversation.id}
-            className="bg-white p-4 rounded-md shadow-md"
-          >
-            <h3 className="text-md font-medium">{conversation.title}</h3>
-          </div>
-        ))}
+    <section className="h-full bg-white p-4 rounded-3xl flex flex-col justify-between">
+      <div>
+        <h2 className="text-lg font-bold mb-4 text-center">
+          Historique des discussions
+        </h2>
+        <span className="space-y-4">
+          {conversations.map((conversation) => (
+            <div
+              key={conversation.id}
+              className="bg-white p-4 rounded-md shadow-md"
+            >
+              <h3 className="text-md font-medium">{conversation.title}</h3>
+            </div>
+          ))}
+        </span>
       </div>
-    </div>
+      <div className="border-2 border-red-600 h-[10%] w-full">
+        <Button className="grid place-content-center">Upgrade</Button>
+      </div>
+    </section>
   );
 };
 
