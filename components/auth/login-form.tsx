@@ -25,6 +25,7 @@ import { FormSuccess } from "@/components/auth/form-success";
 import { FormError } from "@/components/auth/form-error";
 import { login } from "@/actions/login";
 import { LoginSchema } from "@/schemas";
+import { TransitionLink } from "./LinkTransition";
 
 // Définir le type pour les valeurs du formulaire
 type LoginFormValues = z.infer<typeof LoginSchema>;
@@ -115,14 +116,13 @@ export const LoginForm: React.FC = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button
-            disabled={isSubmitting}
-            className="bg-[#232D7E] hover:bg-[#232e7ebb] w-full text-white rounded-full"
-            type="submit"
-          >
-            Sign in
-          </Button>
         </form>
+        <TransitionLink
+          href="/chat"
+          className="bg-[#232D7E] rounded-full hover:bg-[#232e7ebb] w-full text-white drop-shadow-md"
+        >
+          Sign in
+        </TransitionLink>
       </Form>
     </CardWrapper>
   );

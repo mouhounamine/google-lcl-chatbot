@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { TransitionLink } from "./LinkTransition";
 
 interface LoginButtonProps {
   children: React.ReactNode;
@@ -12,19 +12,15 @@ export const LoginButton = ({
   children,
   mode = "redirect",
 }: LoginButtonProps) => {
-  const router = useRouter();
-
-  const OnClick = () => {
-    router.push("/login");
-    console.log("THE LOGIN BUTTON HAS BEEN CLICKED");
-  };
-
   if (mode === "modal") {
     return <span>Here is the login modal</span>;
   }
   return (
-    <span onClick={OnClick} className="cursor-pointer">
-      {children}
-    </span>
+    <TransitionLink
+      className="bg-white rounded-full drop-shadow-md hover:bg-slate-300"
+      href="/login"
+    >
+      Home
+    </TransitionLink>
   );
 };

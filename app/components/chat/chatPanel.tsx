@@ -71,7 +71,7 @@ const ChatPanel = ({ prompts }: Props) => {
         setChatHistory((prevHistory) => [
           ...prevHistory,
           {
-            sender: "User",
+            sender: "Moi",
             avatarUrl: "https://randomuser.me/api/portraits/men/32.jpg", // Replace with actual user avatar if available
             message: prompts[0],
             timestamp: new Date().toLocaleTimeString(),

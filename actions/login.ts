@@ -5,10 +5,8 @@ import { auth } from "@/firebase.config"; // Make sure the correct Firebase conf
 
 // Function to handle login
 export const login = async (values: z.infer<typeof LoginSchema>) => {
-  
   // Validate the input using Zod schema
   const validationFields = LoginSchema.safeParse(values);
-
 
   if (!validationFields.success) {
     return { error: "Invalid email or password format" };
@@ -18,9 +16,13 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
   try {
     // Attempt to sign in with Firebase Authentication
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-    // If successful, return the success message and user data (optional)
+    // If successful, return t<he success message and user data (optional)
     return { success: "Login successful", user: userCredential.user };
   } catch (error: any) {
     // Handle Firebase login errors
@@ -38,4 +40,3 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     return { error: errorMessage };
   }
 };
-

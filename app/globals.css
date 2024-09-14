@@ -6,4 +6,33 @@ html,
 body,
 :root {
   height: 100%;
+  background-color: #232D7E; /* Définition de la couleur que tu veux utiliser */
+
+}
+
+
+
+body {
+  transition-property: opacity, transform, filter, background;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
+}
+
+.bg {
+  stroke: var(--accent);
+  opacity: 0.3;
+}
+
+#progress .indicator {
+  stroke: var(--accent);
+}
+
+.page-transition {
+  opacity: 0;
+  transform: translateZ(40px);
+}
+
+/* Assigner une valeur à la variable --accent */
+:root {
+  --accent: #232D7E; /* Définition de la couleur que tu veux utiliser */
 }

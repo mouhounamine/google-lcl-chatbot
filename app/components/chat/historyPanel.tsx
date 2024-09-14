@@ -11,7 +11,7 @@ const HistoryPanel = () => {
   ]);
 
   return (
-    <section className="h-full bg-white p-4 rounded-3xl flex flex-col justify-between">
+    <section className="h-full bg-white p-4 rounded-3xl flex flex-col justify-between overflow-hidden">
       <div>
         <h2 className="text-lg font-bold mb-4 text-center">
           Historique des discussions
