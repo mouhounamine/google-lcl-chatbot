@@ -13,7 +13,7 @@ const PanelChat = ({ prompts }: { prompts: string[] }) => {
   const sendPrompt = async (prompt: string) => {
     try {
       const accessToken =
-        "ya29.a0AcM612xFu-kK-LFV6KyBoxhaDYBhEkTb-b-kwPjh-L6QC5zMCnpH2twzN7d84zq-oPog6ilnV4N51x_tNfe3c8h3xTCNnA_VK3qRDujsofkZCzKVpAR-50_8b0HGjkBarkQ6XsERoPwLpigNdwfF1jXvDHOpyPcjbmAaCgYKAVYSARISFQHGX2MiP9TK7hWkw8i8Wjr2bUvt8Q0170"; // Remplace par ton token
+        "ya29.a0AcM612ysySmh4bmrPSkfvuizJ23HZpkyK-L5EmKPby3dBdWC0WIfv9unUxH8iwzVfCyHfO5FIZkDBw60KsulQ0ajHkKHIPEkzUOIJBclqwf0H7PYStCZ2_1ROJzGhA-LHpdNRyT55VQ8vETfOaLGDpohd6SrC6Df-M4aCgYKAeESARISFQHGX2MiOUeLQxqhauJNjISF8DsUBg0170"; // Remplace par ton token
       const sessionId = "session111"; // ID de session (peut être généré dynamiquement)
       const url = `https://europe-west1-dialogflow.googleapis.com/v3/projects/lcl-hackathon-e10-sbox-d6db/locations/europe-west1/agents/351b0001-a31c-4f2d-9116-697dfabf2267/environments/e42b062a-a8bf-49ff-9542-9196caff0bb3/sessions/${sessionId}:detectIntent`;
 
